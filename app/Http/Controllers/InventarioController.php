@@ -30,10 +30,10 @@ class InventarioController extends Controller
                 $filter = $request->input('quantity_filter');
                 switch ($filter) {
                     case 'zero':
-                        $query->where('cantidad', 0);
+                        $query->where('cantidad_actual', 0);
                         break;
                     case 'low':
-                        $query->where('cantidad', '<=', 5);
+                        $query->where('cantidad_actual', '<=', 5);
                         break;
                 }
             }
