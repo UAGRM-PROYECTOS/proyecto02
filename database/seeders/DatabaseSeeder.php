@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ProveedorsSeeder::class,
             ProductoSeeder::class,
             MetododValuacionSeeder::class,
+            ComandosSeeder::class,
 
         ]);
     }
