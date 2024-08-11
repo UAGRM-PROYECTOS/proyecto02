@@ -34,17 +34,14 @@ class ComandosSeeder extends Seeder
             ['categoria', 'agregar', 'nombre', 'categoria agregar [categoria1]'],
 
             ['proveedor', 'listar', 'ninguno', 'proveedor listar'],
-            ['proveedor', 'agregar', 'nombre,direccion,telefono,email', 'proveedor agregar [proveedor1;Av Lujan #13 5to anillo;69490587;proveedor@gmail.com]'],
-            ['proveedor', 'modificar', 'id,nombre,direccion,telefono,email', 'proveedor modificar [1;proveedor1;Av Lujan #13 5to anillo;69490587;proveedor@gmail.com]'],
-            ['proveedor', 'eliminar', 'id', 'proveedor eliminar [1]'],
+            ['proveedor', 'agregar', 'nombre,direccion,telefono,email', 'proveedor agregar [proveedor1;proveedor@gmail.com;Av Lujan #13 5to anillo;69490587]'],
 
             ['ingreso', 'listar', 'ninguno', 'ingreso listar'],
-            ['ingreso', 'agregar', 'proveedor_id,fecha_de_ingreso', 'ingreso agregar [1;2024-03-13]'],
+            ['ingreso', 'agregar', 'proveedor_id', 'ingreso agregar [1]'],
     
-            ['detalle-ingreso', 'listar', 'ingreso_id', 'detalle-ingreso listar [1]'],
-            ['detalle-ingreso', 'agregar', 'ingreso_id,producto,cantidad', 'detalle-ingreso agregar [1;MANZANA;1]'],
-            ['detalle-ingreso', 'modificar', 'ingreso_id,producto,cantidad', 'detalle-ingreso modificar [1;MANZANA;2]'],
-            ['detalle-ingreso', 'eliminar', 'ingreso_id,producto', 'detalle-ingreso eliminar [1;MANZANA]'],
+            ['detalleingreso', 'listar', 'ingreso_id', 'detalleingreso listar [1]'],
+            ['detalleingreso', 'agregar', 'ingreso_id,producto,cantidad', 'detalleingreso agregar [1;MANZANA;1]'],
+          
     
             ['pago', 'listar', 'ninguno', 'pago listar'],
             ['pago', 'agregar', 'orden_id,nombre,monto', 'pago agregar [1;Clinete;0.4]'],
