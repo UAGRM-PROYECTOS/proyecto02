@@ -14,7 +14,11 @@ class ComandosSeeder extends Seeder
     public function run(): void
     {
         $comandos = [
-            ['HELP', 'Lista de Comandos', 'NINGUNO', 'HELP', 'https://res.cloudinary.com/drjvgyusx/image/upload/v1721250339/ssejcxxpcgxgtknccvl0.jpg', 0.30, 0, 5, 1],
+            ['comandos', 'listar', 'ninguno', 'help listar'],
+            ['producto', 'listar', 'ninguno', 'producto listar'],
+            ['usuario', 'listar', 'ninguno', 'usuario listar'],
+            ['venta', 'listar', 'ninguno', 'venta listar'],
+
 
         ];
 
