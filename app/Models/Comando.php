@@ -7,6 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
     class Comando extends Model
     {
-        protected $table = 'comando';
         protected $fillable = ['caso_de_uso', 'accion', 'parametro', 'ejemplo'];
     }
