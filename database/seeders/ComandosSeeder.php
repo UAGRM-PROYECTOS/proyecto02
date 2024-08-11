@@ -26,8 +26,8 @@ class ComandosSeeder extends Seeder
             ['cliente', 'eliminar', 'id', 'cliente eliminar [1]'],
             
             ['producto', 'listar', 'ninguno', 'producto listar'],
-            ['producto', 'agregar', 'nombre,descripcion,precio_venta,categoria_id', 'producto agregar [producto1;producto1 Describir;0.4;FRUTA/VERDURA]'],
-            ['producto', 'modificar', 'nombre,descripcion,precio_venta,categoria_id', 'producto modificar [producto1;producto1 Describir;0.4;FRUTA/VERDURA]'],
+            ['producto', 'agregar', 'cod,nombre,descripcion,unidad,precio_venta,categoria_id', 'producto agregar [PRO01;producto1;producto1 Describir;UNIDAD;0.4;FRUTAS/VERDURAS]'],
+            ['producto', 'modificar', 'cod,nombre,descripcion,unidad,precio_venta,categoria_id', 'producto modificar [PRO01;producto1;producto1 Describir;KG;0.4;FRUTA/VERDURA]'],
             ['producto', 'eliminar', 'id', 'producto eliminar [1]'],
 
             ['categoria', 'listar', 'ninguno', 'categoria listar'],
@@ -37,14 +37,22 @@ class ComandosSeeder extends Seeder
             ['proveedor', 'agregar', 'nombre,direccion,telefono,email', 'proveedor agregar [proveedor1;Av Lujan #13 5to anillo;69490587;proveedor@gmail.com]'],
             ['proveedor', 'modificar', 'id,nombre,direccion,telefono,email', 'proveedor modificar [1;proveedor1;Av Lujan #13 5to anillo;69490587;proveedor@gmail.com]'],
             ['proveedor', 'eliminar', 'id', 'proveedor eliminar [1]'],
+
+            ['ingreso', 'listar', 'ninguno', 'ingreso listar'],
+            ['ingreso', 'agregar', 'proveedor_id,fecha_de_ingreso', 'ingreso agregar [1;2024-03-13]'],
+    
+            ['detalle-ingreso', 'listar', 'ingreso_id', 'detalle-ingreso listar [1]'],
+            ['detalle-ingreso', 'agregar', 'ingreso_id,producto,cantidad', 'detalle-ingreso agregar [1;MANZANA;1]'],
+            ['detalle-ingreso', 'modificar', 'ingreso_id,producto,cantidad', 'detalle-ingreso modificar [1;MANZANA;2]'],
+            ['detalle-ingreso', 'eliminar', 'ingreso_id,producto', 'detalle-ingreso eliminar [1;MANZANA]'],
     
             ['pago', 'listar', 'ninguno', 'pago listar'],
             ['pago', 'agregar', 'orden_id,nombre,monto', 'pago agregar [1;Clinete;0.4]'],
-            ['pago', 'modificar', 'id,transaccion,estado_id', 'pago modificar [1;1877968;2(PAGADO)]'],
+            ['pago', 'modificar', 'id,transaccion,estado_id', 'pago modificar [1;1877968;PAGADO]'],
     
             ['orden', 'listar', 'ninguno', 'orden listar'],
-            ['orden', 'agregar', 'cliente,estado_id', 'orden agregar [email;9(CREAR)]'],
-            ['orden', 'modificar', 'id,estado_id', 'orden modificar [1;2(PAGADO)/ 8(ENVIADO)]'],
+            ['orden', 'agregar', 'cliente,estado_id', 'orden agregar [email;CREAR]'],
+            ['orden', 'modificar', 'id,estado_id', 'orden modificar [1;PAGADO/ENVIADO]'],
             ['orden', 'eliminar', 'id', 'orden eliminar [1]'],
     
             ['detalle-orden', 'listar', 'orden_id', 'detalle-orden listar [1]'],
