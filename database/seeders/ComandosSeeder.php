@@ -15,9 +15,49 @@ class ComandosSeeder extends Seeder
     {
         $comandos = [
             ['comandos', 'listar', 'ninguno', 'help listar'],
-            ['producto', 'listar', 'ninguno', 'producto listar'],
             ['usuario', 'listar', 'ninguno', 'usuario listar'],
+            ['usuario', 'agregar', 'name,email,password,rol', 'usuario agregar [admtest;admtest@gmail.com;1234567890;admin]'],
+            ['usuario', 'modificar', 'id,name,email,password,rol', 'usuario modificar [1;admtest1;admtest1@gmail.com;1234567890;admin]'],
+            ['usuario', 'eliminar', 'id', 'usuario eliminar [1]'],
+
+            ['cliente', 'listar', 'ninguno', 'venta listar'],
+            ['cliente', 'agregar', 'name,email,password,direccion,telefono,sexo,cedula_nit', 'cliente agregar [cliente1;cliente1@gmail.com;1234567890;Av Lujan #13 5to anillo;69490587;M;9814088'],
+            ['cliente', 'modificar', 'id,name,email,password,direccion,telefono,sexo,cedula_nit', 'cliente agregar [1;cliente1;cliente1@gmail.com;1234567890;Av Lujan #13 5to anillo;69490587;M;9814088'],
+            ['cliente', 'eliminar', 'id', 'cliente eliminar [1]'],
+            
+            ['producto', 'listar', 'ninguno', 'producto listar'],
+            ['producto', 'agregar', 'nombre,descripcion,precio_venta,categoria_id', 'producto agregar [producto1;producto1 Describir;0.4;FRUTA/VERDURA]'],
+            ['producto', 'modificar', 'nombre,descripcion,precio_venta,categoria_id', 'producto modificar [producto1;producto1 Describir;0.4;FRUTA/VERDURA]'],
+            ['producto', 'eliminar', 'id', 'producto eliminar [1]'],
+
+            ['categoria', 'listar', 'ninguno', 'categoria listar'],
+            ['categoria', 'agregar', 'nombre', 'categoria agregar [categoria1]'],
+
+            ['proveedor', 'listar', 'ninguno', 'proveedor listar'],
+            ['proveedor', 'agregar', 'nombre,direccion,telefono,email', 'proveedor agregar [proveedor1;Av Lujan #13 5to anillo;69490587;proveedor@gmail.com]'],
+            ['proveedor', 'modificar', 'id,nombre,direccion,telefono,email', 'proveedor modificar [1;proveedor1;Av Lujan #13 5to anillo;69490587;proveedor@gmail.com]'],
+            ['proveedor', 'eliminar', 'id', 'proveedor eliminar [1]'],
+    
+            ['pago', 'listar', 'ninguno', 'pago listar'],
+            ['pago', 'agregar', 'orden_id,nombre,monto', 'pago agregar [1;Clinete;0.4]'],
+            ['pago', 'modificar', 'id,transaccion,estado_id', 'pago modificar [1;1877968;2(PAGADO)]'],
+    
+            ['orden', 'listar', 'ninguno', 'orden listar'],
+            ['orden', 'agregar', 'cliente,estado_id', 'orden agregar [email;9(CREAR)]'],
+            ['orden', 'modificar', 'id,estado_id', 'orden modificar [1;2(PAGADO)/ 8(ENVIADO)]'],
+            ['orden', 'eliminar', 'id', 'orden eliminar [1]'],
+    
+            ['detalle-orden', 'listar', 'orden_id', 'detalle-orden listar [1]'],
+            ['detalle-orden', 'agregar', 'orden_id,producto,cantidad', 'detalle-orden agregar [1;MANZANA;1]'],
+            ['detalle-orden', 'modificar', 'id,orden_id,producto,cantidad', 'detalle-orden modificar [1;MANZANA;2]'],
+            ['detalle-orden', 'eliminar', 'orden_id,producto', 'detalle-orden eliminar [1;MANZANA]'],
+            
+            ['estado', 'listar', 'ninguno', 'estado listar'],
+            ['valuacion', 'listar', 'ninguno', 'valuacion listar'],
+            ['metodo', 'listar', 'ninguno', 'metodo listar'],
+
             ['venta', 'listar', 'ninguno', 'venta listar'],
+
 
 
         ];
