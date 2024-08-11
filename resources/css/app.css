@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+/* Ejemplo de clases para el modo oscuro */
+.dark .bg-gray-800 {
+    background-color: #2d3748;
+}
+
+.dark .text-white {
+    color: #ffffff;
+}
+
+.dark .bg-gray-900 {
+    background-color: #1a202c;
+}
+.dark .text-gray-800 {
+    color: #ffffff;
+}
+.dark .divide-gray-300 {
+    background-color: #707a90;
+}
+.dark .bg-green-600 {
+    background-color: #ffffff;
+}
+.dark .text-white {
+    color: #000000;
+}
+.dark .bg-white {
+    background-color: #707a90;
+}
+.dark .bg-black {
+    background-color: #ffffff;
+}
+.dark .text-gray-500 {
+    color: #000000;
+}
+.dark .bg-gray-50 {
+    background-color: #707a90;
+}
+
+
