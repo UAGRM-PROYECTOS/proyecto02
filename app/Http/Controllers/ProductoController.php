@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 date_default_timezone_set('America/La_Paz');
 class ProductoController extends Controller
 {
@@ -159,6 +160,13 @@ class ProductoController extends Controller
         $productos = Producto::whereRaw('LOWER(nombre) LIKE ?', ['%' . $query . '%'])
             ->get(['id', 'nombre']); 
         return response()->json($productos);
+    }
+
+    public function generarReporte()
+    {
+        $productos = Producto::all();
+        $pdf = Pdf::loadView('producto.reporte', compact('productos'));
+        return $pdf->download('reporte_producto.pdf');
     }
 
 }
