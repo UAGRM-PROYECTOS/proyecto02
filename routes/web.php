@@ -34,6 +34,17 @@ Route::middleware('auth',)->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth','visits'])->group(function () {
+    Route::get('/catalogo', [ProductoController::class, 'CatalogoView'])->name('producto.catalogo') ;
+    Route::resource('detalle-ordens', DetalleOrdenController::class);
+    Route::get('/addDetalleOrden', [OrdenController::class, 'addDetalleOrden'])->name('ordens.addDetalleOrden');
+    Route::get('/orden-pedido/{id}', [OrdenController::class, 'ordenPedido'])->name('orden.pedido');
+    Route::get('/orden-pago/{id}', [PagoController::class, 'ordenPago'])->name('orden.pago');
+    Route::post('/consumirServicio', [PagoController::class, 'RecolectarDatos'])->name('pago.consumirservicio');
+    Route::get('/pedidos',[OrdenController::class, 'pedidos'])->name('pedidos.pedidos');;
+    Route::get('/orden-ver/{id}',[OrdenController::class, 'ordenVer'])->name('orden.ver');;
+    Route::get('/productos/search', [ProductoController::class, 'search'])->name('productos.search');
+});
 
 Route::middleware(['auth','role:admin','visits'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified', 'visits'])->name('dashboard');
@@ -70,16 +81,7 @@ Route::middleware(['auth','role:admin','visits'])->group(function () {
 
 });
 
-Route::middleware(['auth','visits'])->group(function () {
-    Route::get('/catalogo', [ProductoController::class, 'CatalogoView'])->name('producto.catalogo') ;
-    Route::resource('detalle-ordens', DetalleOrdenController::class);
-    Route::get('/addDetalleOrden', [OrdenController::class, 'addDetalleOrden'])->name('ordens.addDetalleOrden');
-    Route::get('/orden-pedido/{id}', [OrdenController::class, 'ordenPedido'])->name('orden.pedido');
-    Route::get('/orden-pago/{id}', [PagoController::class, 'ordenPago'])->name('orden.pago');
-    Route::post('/consumirServicio', [PagoController::class, 'RecolectarDatos'])->name('pago.consumirservicio');
-    Route::get('/pedidos',[OrdenController::class, 'pedidos'])->name('pedidos.pedidos');;
-    Route::get('/orden-ver/{id}',[OrdenController::class, 'ordenVer'])->name('orden.ver');;
-});
+
 
 
 require __DIR__.'/auth.php';

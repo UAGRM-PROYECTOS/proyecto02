@@ -152,4 +152,13 @@ class ProductoController extends Controller
         return Redirect::route('productos.index')
             ->with('success', 'Producto deleted successfully');
     }
+
+    public function search(Request $request)
+    {
+        $query = strtolower($request->input('query')); 
+        $productos = Producto::whereRaw('LOWER(nombre) LIKE ?', ['%' . $query . '%'])
+            ->get(['id', 'nombre']); 
+        return response()->json($productos);
+    }
+
 }

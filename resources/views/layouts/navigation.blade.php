@@ -3,6 +3,29 @@
         font-style: italic;
     }
 </style>
+<style>
+    #searchResults {
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        top: 45px;
+        width: 250px; /* Asegúrate de que el ancho sea adecuado */
+    }
+
+    #searchResults a {
+        display: block;
+        padding: 8px;
+        text-decoration: none;
+        color: #333;
+    }
+
+    #searchResults a:hover {
+        background-color: #f0f0f0;
+    }
+</style>
 
 <nav x-data="{ open: false, isDarkMode: $isDarkMode }" {{-- class="bg-white border-b border-gray-100"> --}}
     :class="{
@@ -13,14 +36,14 @@
     }">
 
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
+    <div class="max-w-8xl mx-auto px-6 sm:px-8 lg:px-10">
+        <div class="flex justify-between h-16 items-center">
+            <div class="flex items-center space-x-6">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                <a href="{{ route('dashboard') }}">
-                <img src="https://res.cloudinary.com/drjvgyusx/image/upload/v1720578579/logo_jojjjr.jpg"style="width: 60px; height: 55px; margin-right: 2px;"/>
-                </a>
+                    <a href="{{ route('dashboard') }}">
+                    <img src="https://res.cloudinary.com/drjvgyusx/image/upload/v1720578579/logo_jojjjr.jpg"style="width: 60px; height: 55px; margin-right: 2px;"/>
+                    </a>
 
                     <!-- Botón para cambiar de modo -->
                     <button style="margin-right: 10px;"
@@ -141,7 +164,7 @@
                 @endif
                 <!----------------------------------------------------------------->
                 <!-- Settings Dropdown-Ordenes -->
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <div class="hidden sm:flex sm:items-center sm:ms-4" style="margin-right: 20px;">
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button
@@ -179,22 +202,70 @@
                     </x-dropdown>
                 </div>
 
-                <!----------------------------------------------------------------->
+                <!-- Search Bar -->
+                <div class="flex items-center ms-10" style="margin-right: 20px;">
+                    <input type="text" id="searchInput" name="query" placeholder="Buscar..."
+                        class="border rounded-md p-2 text-sm focus:outline-none focus:ring focus:border-blue-300"
+                        style="width: 250px;">
+                    <button type="button" class="p-2 ml-2 text-white bg-blue-500 rounded-md hover:bg-blue-700 focus:outline-none">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div id="searchResults" class="absolute bg-white border mt-2 w-250 hidden"></div>
+                </div>
 
+                <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const searchInput = document.getElementById('searchInput');
+                    const searchResults = document.getElementById('searchResults');
 
-            </div>
-            <!-- Hamburger -->
-            <div class="me-4 sm:flex sm:items-center sm:ms-8">
-                <button onclick="window.location='{{ route('detalle-ordens.index') }}'" class="inline-flex items-center justify-center p-2 rounded-md bg-black hover:bg-grey-800 text-white font-bold py-2 px-4 rounded">
-                    <x-car></x-car>
-                </button>
+                    searchInput.addEventListener('input', function() {
+                        const query = searchInput.value;
 
+                        if (query.length > 1) { // Solo realiza la búsqueda si el query tiene más de 1 caracter
+                            fetch(`/productos/search?query=${query}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.length > 0) {
+                                        searchResults.innerHTML = data.map(producto => `
+                                            <a href="/productos/${producto.id}" class="block p-2 hover:bg-gray-200">
+                                                ${producto.nombre}
+                                            </a>
+                                        `).join('');
+                                        searchResults.classList.remove('hidden');
+                                    } else {
+                                        searchResults.innerHTML = '<p class="p-2">No se encontraron resultados.</p>';
+                                        searchResults.classList.remove('hidden');
+                                    }
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching search results:', error);
+                                });
+                        } else {
+                            searchResults.classList.add('hidden');
+                        }
+                    });
+
+                    // Cerrar resultados al hacer clic fuera del área de búsqueda
+                    document.addEventListener('click', function(event) {
+                        if (!searchResults.contains(event.target) && event.target !== searchInput) {
+                            searchResults.classList.add('hidden');
+                        }
+                    });
+                });
+                </script>
+                    <!-- Hamburger -->
+                <div class="me-2 sm:flex sm:items-center sm:ms-6">
+                    <button onclick="window.location='{{ route('detalle-ordens.index') }}'" class="inline-flex items-center justify-center p-2 rounded-md bg-black hover:bg-grey-800 text-white font-bold py-2 px-4 rounded">
+                        <x-car></x-car>
+                    </button>
+
+                </div>                
             </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button
+                         <button
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div :class="{ 'italic-font': isYoungMode }">{{ Auth::user()->name }}</div>
 
@@ -208,27 +279,22 @@
                             </div>
                         </button>
                     </x-slot>
-
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
                 </x-dropdown>
             </div>
-
-
         </div>
     </div>
 
