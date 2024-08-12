@@ -227,7 +227,7 @@
                                 .then(data => {
                                     if (data.length > 0) {
                                         searchResults.innerHTML = data.map(producto => `
-                                            <a href="/productos/${producto.id}" class="block p-2 hover:bg-gray-200">
+                                            <a href="/productos-ver/${producto.id}" class="block p-2 hover:bg-gray-200">
                                                 ${producto.nombre}
                                             </a>
                                         `).join('');
