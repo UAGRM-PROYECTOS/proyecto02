@@ -39,6 +39,8 @@ Route::middleware('auth',)->group(function () {
 
 Route::middleware(['auth','role:admin','visits'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified', 'visits'])->name('dashboard');
+    Route::get('/reporte-producto', [ProductoController::class, 'generarReporte'])->name('reporte.producto');
+    Route::get('/reporte-inventario', [InventarioController::class, 'generarReporte'])->name('reporte.inventario');
     Route::resource('estados', EstadoController::class);
     Route::resource('categorias', CategoriaController::class);
     Route::resource('metodo-pagos', MetodoPagoController::class);

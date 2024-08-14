@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\InventarioRequest;
 use App\Models\Visit;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 date_default_timezone_set('America/La_Paz');
@@ -102,5 +103,12 @@ class InventarioController extends Controller
 
         return Redirect::route('inventarios.index')
             ->with('success', 'Inventario deleted successfully');
+    }
+
+    public function generarReporte()
+    {
+        $inventarios = Inventario::with('producto')->get();
+        $pdf = Pdf::loadView('inventario.reporte', compact('inventarios'));
+        return $pdf->download('reporte_inventario.pdf');
     }
 }

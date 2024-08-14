@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ProductoRequest;
 use Carbon\Carbon;
 use App\Models\Visit;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
@@ -159,5 +160,11 @@ class ProductoController extends Controller
         $productos = Producto::whereRaw('LOWER(nombre) LIKE ?', ['%' . $query . '%'])
             ->get(['id', 'nombre']); 
         return response()->json($productos);
+    }
+    public function generarReporte()
+    {
+        $productos = Producto::all();
+        $pdf = Pdf::loadView('producto.reporte', compact('productos'));
+        return $pdf->download('reporte_producto.pdf');
     }
 }
