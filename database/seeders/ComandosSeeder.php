@@ -42,19 +42,14 @@ class ComandosSeeder extends Seeder
             ['detalleingreso', 'listar', 'ingreso_id', 'detalleingreso listar [1]'],
             ['detalleingreso', 'agregar', 'ingreso_id,producto,cantidad', 'detalleingreso agregar [1;MANZANA;1]'],
           
-    
-    
             ['orden', 'listar', 'ninguno', 'orden listar'],
-            ['orden', 'agregar', 'cliente,estado_id', 'orden agregar [email;CREAR]'],
-            ['orden', 'modificar', 'id,estado_id', 'orden modificar [1;PAGADO/ENVIADO]'],
-            ['orden', 'eliminar', 'id', 'orden eliminar [1]'],
-    /*
+            ['orden', 'agregar', 'cliente_id', 'orden agregar [1]'],
+            ['orden', 'modificar', 'id,estado_id', 'orden modificar [1;5]'],
+    
             ['detalle-orden', 'listar', 'orden_id', 'detalle-orden listar [1]'],
             ['detalle-orden', 'agregar', 'orden_id,producto,cantidad', 'detalle-orden agregar [1;MANZANA;1]'],
-            ['detalle-orden', 'modificar', 'id,orden_id,producto,cantidad', 'detalle-orden modificar [1;MANZANA;2]'],
-            ['detalle-orden', 'eliminar', 'orden_id,producto', 'detalle-orden eliminar [1;MANZANA]'],
             
-            ['pago', 'listar', 'ninguno', 'pago listar'],
+         /*   ['pago', 'listar', 'ninguno', 'pago listar'],
             ['pago', 'agregar', 'orden_id,nombre,monto', 'pago agregar [1;Clinete;0.4]'],
             ['pago', 'modificar', 'id,transaccion,estado_id', 'pago modificar [1;1877968;PAGADO]'],
 
